@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NK的個人網站</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Noto Sans TC', sans-serif;
+      color : white;
+      background-color: #9f9fdd;
+    }
+
+    .sidebar {
+      height: 500px;
+      width: 250px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #3c3d6d;
+      padding-top: 20px;
+      color: white;
+      border-radius: 20px 20px 20px 20px;;
+      margin-top: 50px;
+      margin-left: 20px;
+    }
+
+        .window {
+      height: 500px;
+      width: 500px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #ffeaf6;
+      padding-top: 20px;
+      color: #80586e;
+      border-radius: 20px 20px 20px 20px;;
+      margin-top: 50px;
+      margin-left: 300px;
+      padding: 10px 20px;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .sidebar a:hover {
+      background-color: #232446;
+    }
+
+    .main-content {
+      margin-left: 300px;
+      margin-top: 20px;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <a onclick="showContent('intro')">自我介紹</a>
+    <a onclick="showContent('socialmedia')">社群媒體</a>
+    <a onclick="showContent('profile')">個人資料</a>
+  </div>
+
+  <div class="window" id="1">
+    <h3>NK，16歲 是個學生(迫真</h3>
+  </div>
+
+
+  <script>
+    function showContent(section) {
+      const content = document.getElementById('1');
+  if (section === 'intro') {
+    content.innerHTML = `
+      <h1>自我介紹</h1>
+      <h3>NK，16歲，是個學生（迫真）</h3>
+    `;
+  } else if (section === 'socialmedia') {
+    content.innerHTML = `
+      <h1>社群媒體</h1>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <a href="https://www.instagram.com" target="_blank">
+          <img src="image/ig.png" width="54px" alt="Instagram">
+        </a>
+        <a href="https://discord.com" target="_blank">
+          <img src="image/dc.png" width="54px" alt="Discord">
+        </a>
+      </div>
+      <p>暫時不公開</p>
+    `;
+  } else if (section === 'profile') {
+    content.innerHTML = `
+      <h1>個人資料</h1>
+      <h3>廢物高中牲一個</h3>
+    `;
+  }
+}
+
+  </script>
+
+</body>
+</html>
