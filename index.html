@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -7,140 +6,165 @@
   <title>NK的個人網站</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg-color: #9f9fdd;
+      --sidebar-color: #3c3d6d;
+      --window-bg: #ffeaf6;
+      --text-color: #80586e;
+    }
+
     body {
       margin: 0;
       font-family: 'Noto Sans TC', sans-serif;
-      color : white;
-      background-color: #9f9fdd;
-    }
-
-    .sidebar {
-      height: 500px;
-      width: 250px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      background-color: #3c3d6d;
-      padding-top: 20px;
       color: white;
-      border-radius: 20px 20px 20px 20px;;
-      margin-top: 50px;
-      margin-left: 20px;
+      background-color: var(--bg-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      box-sizing: border-box;
     }
 
-        .window {
-      height: 500px;
-      width: 500px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      background-color: #ffeaf6;
-      padding-top: 20px;
-      color: #80586e;
-      border-radius: 20px 20px 20px 20px;;
-      margin-top: 50px;
-      margin-left: 300px;
-      padding: 10px 20px;
+    /* 容器：在桌機上橫排，手機上直排 */
+    .container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 900px;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    /* 側邊欄改為導覽列 */
+    .sidebar {
+      background-color: var(--sidebar-color);
+      padding: 10px;
+      border-radius: 20px;
+      display: flex;
+      flex-wrap: wrap; /* 手機上自動換行 */
+      justify-content: center;
+      gap: 10px;
     }
 
     .sidebar a {
-      display: block;
       color: white;
-      padding: 10px 20px;
+      padding: 10px 15px;
       text-decoration: none;
       cursor: pointer;
+      border-radius: 10px;
+      transition: background 0.3s;
     }
 
     .sidebar a:hover {
       background-color: #232446;
     }
 
-    .main-content {
-      margin-left: 300px;
-      margin-top: 20px;
+    /* 主要內容視窗 */
+    .window {
+      background-color: var(--window-bg);
+      color: var(--text-color);
+      border-radius: 20px;
       padding: 20px;
+      min-height: 300px;
+      width: 100%;
+      box-sizing: border-box;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    h1 { margin-top: 0; font-size: 1.5rem; }
+    h3 { font-weight: normal; line-height: 1.6; font-size: 1.1rem; }
+
+    /* 針對桌機螢幕的優化 (螢幕寬度大於 768px 時) */
+    @media (min-width: 768px) {
+      .container {
+        flex-direction: row;
+        align-items: flex-start;
+        margin-top: 50px;
+      }
+
+      .sidebar {
+        flex-direction: column;
+        width: 200px;
+        justify-content: flex-start;
+        position: sticky; /* 捲動時固定在頂部 */
+        top: 50px;
+      }
+
+      .window {
+        flex: 1; /* 自動填滿剩餘空間 */
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="sidebar">
-    <a onclick="showContent('intro')">自我介紹</a>
-    <a onclick="showContent('socialmedia')">社群媒體</a>
-    <a onclick="showContent('profile')">個人資料</a>
-    <a onclick="showContent('future')">未來規劃</a>
-  </div>
+  <div class="container">
+    <div class="sidebar">
+      <a onclick="showContent('intro')">自我介紹</a>
+      <a onclick="showContent('socialmedia')">社群媒體</a>
+      <a onclick="showContent('profile')">個人資料</a>
+      <a onclick="showContent('badthings')">雷點</a>
+      <a onclick="showContent('maybadyou')">可能雷到你</a>
+      <a onclick="showContent('future')">未來規劃</a>
+    </div>
 
-    <div class="window" id="1">
+    <div class="window" id="content-window">
       <h1>自我介紹</h1>
       <h3>
-      <p>
-      NK，16歲，是個學生</br>
-      成績偏廢 沒什麼特長</br>
-      想學各種東西 然後去圈錢</br>
-      喜歡吃冰跟布丁</br>
-      本人做事跟說話不動腦子可能雷到你</br>
-      然後我是個V+÷ P主推Chinozo跟MIMI</br>
-      喜歡的聲庫是flower</br>
-      然後我喜歡畫畫</br>
-      </p>
+        NK，16歲，是個學生<br>
+        成績偏廢 沒什麼特長<br>
+        想學各種東西 然後去圈錢<br>
+        喜歡吃冰跟布丁<br>
+        本人做事跟說話不動腦子可能雷到你<br>
+        然後我是個V+÷ P主推Chinozo跟MIMI<br>
+        喜歡的聲庫是flower<br>
+        然後我喜歡畫畫
       </h3>
+    </div>
   </div>
-
 
   <script>
     function showContent(section) {
-      const content = document.getElementById('1');
-  if (section === 'intro') {
-    content.innerHTML = `
-      <h1>自我介紹</h1>
-      <h3>
-      <p>
-      NK，16歲，是個學生</br>
-      成績偏廢 沒什麼特長</br>
-      想學各種東西 然後去圈錢</br>
-      喜歡吃冰跟布丁</br>
-      本人做事跟說話不動腦子可能雷到你</br>
-      然後我是個V+÷ P主推Chinozo跟MIMI</br>
-      喜歡的聲庫是flower</br>
-      然後我喜歡畫畫</br>
-      </p>
-      </h3>
-    `;
-  } else if (section === 'socialmedia') {
-    content.innerHTML = `
-      <h1>社群媒體</h1>
-      <div style="display: flex; align-items: center; gap: 10px;">
-        <a href="https://www.instagram.com" target="_blank">
-          <img src="image/ig.png" width="54px" alt="Instagram">
-        </a>
-        <a href="https://discord.com" target="_blank">
-          <img src="image/dc.png" width="54px" alt="Discord">
-        </a>
-      </div>
-      <p>暫時不公開</p>
-    `;
-  } else if (section === 'profile') {
-    content.innerHTML = `
-      <h1>個人資料</h1>
-      <h3>廢物高中生一個</h3>
-    `;
-  } else if (section === 'future'){
-    content.innerHTML = `
-      <h1>未來規劃</h1>
-      <h3>
-      <p>
-      首先最重要的就是把成績拉上去</br>
-      再來考上台科大 逃離成為脫北者的命運</br>
-      然後提高成績的同時去學各種我想學的東西 例如:cos 做些小點心 程式技術等</br>
-      還有學畫畫變大佬</br>
-      變成超級有錢人 獲得一輩子不愁吃穿的財富與名聲</br>
-      </p>
-      </h3>
-    `
-  }
-}
-
+      const content = document.getElementById('content-window');
+      if (section === 'intro') {
+        content.innerHTML = `
+          <h1>自我介紹</h1>
+          <h3>NK，16歲，是個學生<br>成績偏廢 沒什麼特長<br>想學各種東西 然後去圈錢<br>喜歡吃冰跟布丁<br>本人做事跟說話不動腦子可能雷到你<br>然後我是個V+÷ P主推Chinozo跟MIMI<br>喜歡的聲庫是flower<br>然後我喜歡畫畫</h3>
+        `;
+      } else if (section === 'socialmedia') {
+        content.innerHTML = `
+          <h1>社群媒體</h1>
+          <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 10px;">
+            <a href="https://www.instagram.com" target="_blank"><img src="image/ig.png" width="50" alt="Instagram"></a>
+            <a href="https://discord.com" target="_blank"><img src="image/dc.png" width="50" alt="Discord"></a>
+          </div>
+          <p>暫時不公開</p>
+        `;
+      } else if (section === 'profile') {
+        content.innerHTML = `<h1>個人資料</h1><h3>廢物高中生一個</h3>`;
+      } else if (section === 'future'){
+        content.innerHTML = `
+          <h1>未來規劃</h1>
+          <h3>首先最重要的就是把成績拉上去<br>再來考上台科大 逃離成為脫北者的命運<br>提高成績的同時去學各種我想學的東西 例如:cos 做些小點心 程式技術等<br>還有學畫畫變大佬<br>變成超級有錢人 獲得一輩子不愁吃穿的財富與名聲</h3>
+        `;
+      } else if (section === 'badthings') {
+        content.innerHTML = `
+        <h1>雷點</h1>
+        <h3>以外貌批評他人(包括我、其他任何人、coser等)</h3>
+        <h3>因為性別而限制/批評(如服裝、個人特質、身材、應該成為什麼樣子)</h3><h6>開玩笑別太過分的話不算</h6>
+        <p>大概就這些 我其實雷點算少(大概吧) 很多大眾雷我也不怎麼在乎(?</p>
+        `
+      } else if (section === 'maybadyou') {
+        content.innerHTML = `
+        <h1>可能雷到你</h1>
+        <h3>地獄梗、亂講話、講話特別賤、做事說話不過腦子、白目、三分鐘熱度、忘東忘西、不會察言觀色、講話聲音有時會太大且忘記控制音量</h3>
+        <h6>還有一些大部分人會在意但我不怎麼在意的事我可能也會不小心做出來</h6>
+        `
+      }
+      // 切換內容後自動滾回頂部，對手機用戶較友善
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   </script>
 
 </body>
